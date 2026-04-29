@@ -17,4 +17,13 @@ def remover_dado(dados_rolados, dados_no_estoque, dado_para_remover):
     dados_rolados.append(valor)
     return [dados_rolados, dados_no_estoque]
 
+def calcula_pontos_regra_simples(dados):
+    pontos = {}
+    for face in range(1, 7):
+        soma = 0
+        for d in dados:
+            if d == face:
+                soma += d
+        pontos[face] = soma
+    return pontos
 
