@@ -12,10 +12,12 @@ def guardar_dado(dados_rolados, dados_no_estoque, dado_para_guardar):
     return [dados_rolados, dados_no_estoque]
 
 
+
 def remover_dado(dados_rolados, dados_no_estoque, dado_para_remover):
     valor = dados_no_estoque.pop(dado_para_remover)
     dados_rolados.append(valor)
     return [dados_rolados, dados_no_estoque]
+
 
 def calcula_pontos_regra_simples(dados):
     pontos = {}
@@ -28,8 +30,27 @@ def calcula_pontos_regra_simples(dados):
     return pontos
 
 
+
+
 def calcula_pontos_soma(dados):
     soma = 0
     for d in dados:
         soma += d
     return soma
+
+def calcula_pontos_sequencia_baixa(dados):
+    sequencias = [[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6]]
+    for seq in sequencias:
+        encontrou = True
+        for valor in seq:
+            if valor not in dados:
+                encontrou = False
+                break
+        if encontrou:
+            return 15
+    return 0
+
+
+
+
+
