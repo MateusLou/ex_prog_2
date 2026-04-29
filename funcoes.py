@@ -63,6 +63,57 @@ def calcula_pontos_sequencia_alta(dados):
     return 0
 
 
+def organiza_tags(texto):
+    tags = texto.split(',')
+    tags_limpas = []
+    for tag in tags:
+        tag = tag.strip()         
+        tag = tag.lower()              
+        if tag == '':
+            continue
+        if tag[0] == '#':
+            tag = tag[1:]
+        tag = tag.replace(' ', '-')
+        if tag == '':
+            continue
+        tags_limpas.append(tag)
+    return ';'.join(tags_limpas)
+
+
+def processa_dna(lista):
+    contagem = {"A": 0, "T": 0, "C": 0, "G": 0}
+    for sequencia in lista:
+        if sequencia.find('*') != -1:
+            continue
+        numero_str = ""
+        for c in sequencia:
+            if c in '0123456789':
+                numero_str = numero_str + c
+            else:
+                if numero_str == "":
+                    quantidade = 1
+                else:
+                    quantidade = int(numero_str)
+                if c in contagem:
+                    contagem[c] += quantidade
+                numero_str = ""
+    return contagem
+
+
+def calcula_pontos_full_house(dados):
+    contagens = []
+    for face in range(1, 7):
+        contagens.append(dados.count(face))
+    if 3 in contagens and 2 in contagens:
+        soma = 0
+        for d in dados:
+            soma = soma + d
+        return soma
+    else:
+        return 0
+
+
+
 
 
 
