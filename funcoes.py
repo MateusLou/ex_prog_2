@@ -111,6 +111,15 @@ def calcula_pontos_full_house(dados):
         return soma
     else:
         return 0
+    
+def calcula_pontos_quadra(dados):
+    for valor in dados:
+        if dados.count(valor) >= 4:
+            soma = 0
+            for d in dados:
+                soma +=  d
+            return soma
+    return 0
 
 
 
